@@ -50,6 +50,18 @@ docker run -d --restart=always -v /opt/rknd/data:/app/data rknloader
 docker run -d --restart=always -v D:\rknd\data:/app/data rknloader
 ```
 
+## Просмотр журнала событий
+Для начала, выясняем container id запущенного контейнера, либо можем обратиться к нему по имени, если задали его при запуске с помощью опции ```--name```
+```bash
+$ docker ps
+CONTAINER ID   IMAGE        COMMAND               
+b3a85085d43e   rknloader    "sh docker-entrypoin…"
+```
+Просмотр журнала:
+```bash
+$ docker logs b3a85085d43e
+```
+
 ## Обновление
 1. Подтянуть свежую версию (git pull в каталоге с исходниками)
 2. Остановить и удалить старый контейнер
