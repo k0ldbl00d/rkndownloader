@@ -29,7 +29,7 @@
 ```
 git clone https://github.com/k0ldbl00d/rkndownloader.git
 ```
-Собираем образ:
+Переходим в каталог rkndownloader и собираем образ:
 ```
 docker build -t rknloader .
 ```
