@@ -46,6 +46,7 @@ class Downloader {
         }
         $remote = $this->getRemoteDumpDate();
         logw("Дата последнего реестра на сайте РКН: " . date("d.m.Y, H:i:s", $remote));
+        logw("Дата локального реестра: " . date("d.m.Y, H:i:s", $this->getLocalDumpDate()));
         if( $this->getLocalDumpDate() < $remote ) return $remote;
         return false;
     }
@@ -109,8 +110,7 @@ class Downloader {
                     sleep(120);
                 }
             }
-
-
+            
             if($tries==0) {
                 logw("Число попыток исчерпано, файл реестра не получен.");
             }
