@@ -15,6 +15,6 @@ docker run -it --rm rknloader
 
 Run as daemon
 ```
-docker run -d rknloader --restart=always
+docker run -d --restart=always -v data:/app/data rknloader
 ```
 
