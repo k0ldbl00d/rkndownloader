@@ -121,7 +121,3 @@ class Downloader {
         return false;
     }
 }
-
-class getResult {
-    public $code;
-}

@@ -6,3 +6,7 @@ class sendRequest
     public $signatureFile;
     public $dumpFormatVersion;
 }
+
+class getResult {
+    public $code;
+}
