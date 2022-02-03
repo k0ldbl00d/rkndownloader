@@ -9,7 +9,7 @@
 
 ## How-to
 
-Потребуется любой Linux (Centos, Ubuntu, etc) с установленным docker или Windows с Docker Desktop. Для Windows путь к каталогу с данными указывается через «/».
+Потребуется любой Linux (Centos, Ubuntu, etc) с установленным docker или Windows с Docker Desktop. Для Windows путь к каталогу с данными указывается через «\».
 
 1. Создать каталог для данных, например ```/opt/rknd/data```, куда положить файлы ```request.xml``` и ```request.xml.p7s``` - запрос на выгрузку и цифровая подпись к нему. Цифровую подпись можно сделать в Крипто-Про или Крипто-АРМ.
 2. Собрать docker-образ (команда ниже)
@@ -47,7 +47,7 @@ docker run -d --restart=always -v /opt/rknd/data:/app/data rknloader
 
 Запуск в режиме демона в Windows:
 ```
-docker run -d --restart=always -v D:/rknd/data:/app/data rknloader
+docker run -d --restart=always -v D:\rknd\data:/app/data rknloader
 ```
 
 ## Обновление
