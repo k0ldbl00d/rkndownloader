@@ -6,7 +6,7 @@ $config = new stdClass;
 $config->telegram_api_key = '';
 
 // Оповещения в Telegram включены
-$config->telegram_enabled = true;
+$config->telegram_enabled = false;
 
 // Название address-list'а для Mikrotik
 $config->mikrotik_address_list = "social-sites";
