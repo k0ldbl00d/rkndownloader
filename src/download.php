@@ -3,6 +3,7 @@
 require_once("util.php");
 require_once("model.php");
 require_once("downloader.php");
+require_once("parser.php");
 
 $dl = new Downloader();
 

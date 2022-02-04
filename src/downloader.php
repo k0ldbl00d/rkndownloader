@@ -107,6 +107,11 @@ class Downloader {
                     file_put_contents("./data/soc-latest.zip", $file);
                     logw("Файл реестра социально-значимых ресурсов успешно выгружен.");
                     $this->setLocalDumpDate( $this->getRemoteDumpDate() );
+
+                    // Разбираем архив
+                    $parser = new Parser();
+                    $parser->readZip("./data/soc-latest.zip");
+
                 } else {
                     $tries--;
                     logw("Осталось попыток: {$tries}; Ответ сервера: ".$getResultResponse->resultComment);
