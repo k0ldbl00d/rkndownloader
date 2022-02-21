@@ -3,5 +3,5 @@ WORKDIR /app
 RUN mkdir -p /app/data
 ADD src/*.php /app/
 COPY docker-entrypoint.sh /app
-RUN apk add libxml2-dev libzip-dev && docker-php-ext-install soap zip
+RUN apk add libxml2-dev libzip-dev rrdtool font-misc-misc font-screen-cyrillic font-alias freetype ttf-dejavu pango fontconfig font-sony-misc && docker-php-ext-install soap zip
 ENTRYPOINT [ "sh", "docker-entrypoint.sh" ]
