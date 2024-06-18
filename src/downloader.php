@@ -11,11 +11,21 @@ class Downloader {
 
     function __construct()
     {
+        // Create context
+        $context = stream_context_create([
+            'ssl' => [
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            ]
+        ]);
+        
         $this->soap = new SoapClient($this->wsdl, [
             'location' => $this->loc,
             'exceptions' => 1,
             'trace' => 1,
-            'soap_version' => SOAP_1_1
+            'soap_version' => SOAP_1_1,
+            'stream_context' => $context
         ]);
     }
 
