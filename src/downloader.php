@@ -2,8 +2,8 @@
 
 class Downloader {
 
-    private $wsdl = "http://vigruzki.rkn.gov.ru/services/OperatorRequest/?wsdl";
-    private $loc = "http://vigruzki.rkn.gov.ru/services/OperatorRequest/";
+    private $wsdl = "https://vigruzki.rkn.gov.ru/services/OperatorRequest/?wsdl";
+    private $loc = "https://vigruzki.rkn.gov.ru/services/OperatorRequest/";
 
     private $soap;
 
