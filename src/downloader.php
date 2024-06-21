@@ -2,19 +2,25 @@
 
 class Downloader {
 
-    private $wsdl = "http://vigruzki.rkn.gov.ru/services/OperatorRequest/?wsdl";
-    private $loc = "http://vigruzki.rkn.gov.ru/services/OperatorRequest/";
+    private $wsdl = "https://vigruzki.rkn.gov.ru/services/OperatorRequest/?wsdl";
+    private $loc = "https://vigruzki.rkn.gov.ru/services/OperatorRequest/";
 
     private $soap;
 
     private $responseCode = null;
 
     private $delay = 180;
+    private $ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';
 
     function __construct()
     {
         // Create context
         $context = stream_context_create([
+            'http' => [
+                'user_agent' => $this->ua,
+                'protocol_version' => 1.1,
+                'ignore_errors' => true
+            ],
             'ssl' => [
                 'verify_peer' => false,
                 'verify_peer_name' => false,
