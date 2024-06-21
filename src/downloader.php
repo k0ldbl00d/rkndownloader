@@ -9,6 +9,8 @@ class Downloader {
 
     private $responseCode = null;
 
+    private $delay = 180;
+
     function __construct()
     {
         // Create context
@@ -83,8 +85,8 @@ class Downloader {
             $gr = new getResult();
             $gr->code = $this->responseCode;
 
-            logw("Ждём две минуты");
-            sleep(120);
+            logw("Ждём {$this->delay} секунд");
+            sleep($this->delay);
 
             logw("Скачиваем файл реестра запрещенных ресурсов");
             while($tries>0) {
@@ -98,8 +100,8 @@ class Downloader {
                 } else {
                     $tries--;
                     logw("Осталось попыток: {$tries}; Ответ сервера: ".$getResultResponse->resultComment);
-                    logw("Ждём ещё две минуты");
-                    sleep(120);
+                    logw("Ждём {$this->delay} секунд");
+                    sleep($this->delay);
                 }
             }
 
