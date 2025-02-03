@@ -6,8 +6,8 @@ function tgsend($text) {
 
         $token = getenv("TELEGRAM_BOT_TOKEN");
         if(empty($token)) return false;
-        
-        $chat_id = getenv("TELEGRAM_BOT_CHAT_ID");
+
+        $chat_id = getenv("TELEGRAM_CHAT_ID");
         if(empty($chat_id)) return false;
 
         $url = "https://api.telegram.org/bot{$token}";
