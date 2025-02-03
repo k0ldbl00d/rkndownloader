@@ -5,4 +5,7 @@ services:
     restart: unless-stopped
     volumes:
       - /opt/rknd/data:/app/data
+    environment:
+      - TELEGRAM_BOT_TOKEN=токен
+      - TELEGRAM_CHAT_ID=идентификатор-чата
 
