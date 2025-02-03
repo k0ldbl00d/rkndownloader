@@ -37,22 +37,23 @@ docker build -t rknloader .
 ```
 
 ## Примеры запуска
-Запуск в интерактивном режиме:
+
+#### Запуск в интерактивном режиме:
 ```
 docker run -it --rm -v /opt/rknd/data:/app/data rknloader
 ```
 
-Запуск в режиме демона:
+### Запуск в режиме демона:
 ```
 docker run -d --restart=always -v /opt/rknd/data:/app/data rknloader
 ```
 
-Запуск в режиме демона в Windows:
+### Запуск в режиме демона в Windows:
 ```
 docker run -d --restart=always -v D:\rknd\data:/app/data rknloader
 ```
 
-Запуск с уведомлениями об ошибках в Telegram:
+### Запуск с уведомлениями об ошибках в Telegram:
 
 1. Создаём нового бота через BotFather или используем существующего. Нужно выяснить токен - секретный ключ, чтобы приложение могло отправлять уведомления через бота.
 2. Выясняем свой идентификатор чата. Это можно сделать через существующих ботов (например @getmyid_bot). Если хотите чтобы бот отправлял сообщения в канал или общий чат - укажите ID этого канала или чата.
@@ -61,7 +62,7 @@ docker run -d --restart=always -v D:\rknd\data:/app/data rknloader
 docker run -d -e TELEGRAM_BOT_ID="секретный-токен" -e TELEGRAM_CHAT_ID="идентификатор-чата-telegram" --restart=always -v /opt/rknd/data:/app/data rknloader
 ```
 
-Запуск через docker-compose:
+### Запуск через docker-compose:
 
 1. Создаём файл docker-compose.yml (можно скопировать docker-compose-example.yml)
 2. Редактируем файл, изменяя необходимые опции
