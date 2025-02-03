@@ -1,6 +1,6 @@
-FROM php:7.4-cli-alpine
+FROM debian:bookworm-slim
 WORKDIR /app
-RUN apk add libxml2-dev libzip-dev rrdtool font-misc-misc font-screen-cyrillic font-alias freetype ttf-dejavu pango fontconfig font-sony-misc && docker-php-ext-install soap zip curl
+RUN apt update && apt install -y php8.2-cli php8.2-curl php8.2-zip php8.2-soap rrdtool libfreetype6 fonts-dejavu fonts-roboto fontconfig
 RUN mkdir -p /app/data
 ADD src/*.php /app/
 COPY docker-entrypoint.sh /app
