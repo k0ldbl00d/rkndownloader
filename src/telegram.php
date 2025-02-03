@@ -24,5 +24,9 @@ function tgsend($text) {
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         $result = curl_exec($ch);
         curl_close($ch);
+    } catch (Exception $e) {
+        $d = date('d.m.Y H:i:s');
+        $message = trim($e->getMessage());
+        echo "{$d}: Исключение при отправке сообщения Telegram: {$message}\n";
     }
 }
