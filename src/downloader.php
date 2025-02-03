@@ -92,6 +92,7 @@ class Downloader {
             $tries = 5;
             $gr = new getResult();
             $gr->code = $this->responseCode;
+            $onsuccess = getenv("TELEGRAM_NOTIFY_ON_SUCCESS")=="1";
 
             logw("Ждём {$this->delay} секунд");
             sleep($this->delay);
@@ -104,6 +105,7 @@ class Downloader {
                     $file = $getResultResponse->registerZipArchive;
                     file_put_contents("./data/latest.zip", $file);
                     logw("Файл реестра запрещенных ресурсов успешно выгружен.");
+                    if($onsuccess) tgsend("Файл реестра запрещенных ресурсов успешно выгружен.");
                     $this->setLocalDumpDate( $this->getRemoteDumpDate() );
                 } else {
                     $tries--;
@@ -128,6 +130,7 @@ class Downloader {
                     $file = $getResultResponse->registerZipArchive;
                     file_put_contents("./data/soc-latest.zip", $file);
                     logw("Файл реестра социально-значимых ресурсов успешно выгружен.");
+                    if($onsuccess) tgsend("Файл реестра социально-значимых ресурсов успешно выгружен.");
                     $this->setLocalDumpDate( $this->getRemoteDumpDate() );
 
                     // Разбираем архив
