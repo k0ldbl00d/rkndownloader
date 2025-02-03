@@ -52,6 +52,15 @@ docker run -d --restart=always -v /opt/rknd/data:/app/data rknloader
 docker run -d --restart=always -v D:\rknd\data:/app/data rknloader
 ```
 
+Запуск через docker-compose:
+
+1. Создаём файл docker-compose.yml (можно скопировать docker-compose-example.yml)
+2. Редактируем файл, изменяя необходимые опции
+3. Запускаем следующей командой:
+```
+docker-compose up -d
+```
+
 ## Просмотр журнала событий
 Для начала, выясняем container id запущенного контейнера, либо можем обратиться к нему по имени, если задали его при запуске с помощью опции ```--name```
 ```bash

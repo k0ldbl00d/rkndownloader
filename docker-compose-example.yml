@@ -1,0 +1,8 @@
+version: '3.3'
+services:
+  downloader:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - /opt/rknd/data:/app/data
+
