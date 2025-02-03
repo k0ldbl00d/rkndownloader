@@ -83,7 +83,9 @@ class Downloader {
                 $this->responseCode = $response->code;
                 logw("Запрос на выгрузку отправлен. Код запроса: {$response->code}");
                } else {
-                logw("Сбой при отправке запроса на выгрузку: {$response->resultComment}");
+                $msg = "Сбой при отправке запроса на выгрузку: {$response->resultComment}";
+                logw($msg);
+                tgsend($msg);
                 return false;
             }
 
@@ -112,7 +114,9 @@ class Downloader {
             }
 
             if($tries==0) {
-                logw("Число попыток исчерпано, файл реестра запрещенных сайтов не получен.");
+                $msg = "Число попыток исчерпано, файл реестра запрещенных сайтов не получен.";
+                logw($msg);
+                tgsend($msg);
             }
 
             $tries = 5;
@@ -139,10 +143,14 @@ class Downloader {
             }
 
             if($tries==0) {
-                logw("Число попыток исчерпано, файл реестра социально-значимых ресурсов не получен.");
+                $msg = "Число попыток исчерпано, файл реестра социально-значимых ресурсов не получен.";
+                logw($msg);
+                tgsend($msg);
             }
         } catch (Exception $e) {
-            logw("Произошла ошибка при выгрузке реестра: " . $e->getMessage());
+            $msg = "Произошла ошибка при выгрузке реестра: " . $e->getMessage();
+            logw($msg);
+            tgsend($msg);
             return false;
         }
         return false;

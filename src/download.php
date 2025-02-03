@@ -4,6 +4,7 @@ require_once("util.php");
 require_once("model.php");
 require_once("downloader.php");
 require_once("parser.php");
+require_once("telegram.php");
 
 ini_set('default_socket_timeout', 600);
 ini_set('memory_limit', '512M');
