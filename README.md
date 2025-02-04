@@ -1,5 +1,7 @@
 # RKN Downloader
 
+![example workflow](https://github.com/k0ldbl00d/rkndownloader/actions/workflows/docker-image.yml/badge.svg)
+
 Приложение для выгрузки реестров РосКомНадзора операторами связи.
 
 Поддерживаются:
