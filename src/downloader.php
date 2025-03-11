@@ -140,8 +140,8 @@ class Downloader {
                 } else {
                     $tries--;
                     logw("Осталось попыток: {$tries}; Ответ сервера: ".$getResultResponse->resultComment);
-                    logw("Ждём ещё две минуты");
-                    sleep(120);
+                    logw("Ждём {$this->delay} секунд");
+                    sleep($this->delay);
                 }
             }
 
