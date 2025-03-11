@@ -9,7 +9,7 @@ function signExpired() {
     $xml = file_get_contents("/app/data/request.xml");
     if(!$xml) return "Невозможно прочесть файл запроса (request.xml)";
     if(preg_match("/\<requestTime\>([0-9]{4}-[0-9]{2}-[0-9]{2})T([0-9]{2}:[0-9]{2}:[0-9]{2})\.([0-9]{1,4})((\+|\-)[0-9]{2}:[0-9]{2})\<\/requestTime\>/i", $xml, $m)) {
-        $time = strtotime($m[1].' '.$m[2]);
+        $time = strtotime($m[1].' '.$m[2]) + (365*86400);
         logw("Срок окончания действия цифровой подписи: " . date("d.m.Y, H:i",$time));
         $tdiff = $time - time();
         if($tdiff < 864000) {
