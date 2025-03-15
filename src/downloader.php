@@ -99,17 +99,24 @@ class Downloader {
 
             logw("Скачиваем файл реестра запрещенных ресурсов");
             while($tries>0) {
-                $getResultResponse = $this->soap->getResult($gr);
-                if($getResultResponse->result == 1) {
-                    $tries = -1;
-                    $file = $getResultResponse->registerZipArchive;
-                    file_put_contents("./data/latest.zip", $file);
-                    logw("Файл реестра запрещенных ресурсов успешно выгружен.");
-                    if($onsuccess) tgsend("Файл реестра запрещенных ресурсов успешно выгружен.");
-                    $this->setLocalDumpDate( $this->getRemoteDumpDate() );
-                } else {
+                try {
+                    $getResultResponse = $this->soap->getResult($gr);
+                    if($getResultResponse->result == 1) {
+                        $tries = -1;
+                        $file = $getResultResponse->registerZipArchive;
+                        file_put_contents("./data/latest.zip", $file);
+                        logw("Файл реестра запрещенных ресурсов успешно выгружен.");
+                        if($onsuccess) tgsend("Файл реестра запрещенных ресурсов успешно выгружен.");
+                        $this->setLocalDumpDate( $this->getRemoteDumpDate() );
+                    } else {
+                        $tries--;
+                        logw("Осталось попыток: {$tries}; Ответ сервера: ".$getResultResponse->resultComment);
+                        logw("Ждём {$this->delay} секунд");
+                        sleep($this->delay);
+                    }
+                } catch (Exception $e) {
                     $tries--;
-                    logw("Осталось попыток: {$tries}; Ответ сервера: ".$getResultResponse->resultComment);
+                    logw("Осталось попыток: {$tries}; Ответ сервера: ".$e->getMessage());
                     logw("Ждём {$this->delay} секунд");
                     sleep($this->delay);
                 }
@@ -124,22 +131,29 @@ class Downloader {
             $tries = 5;
             logw("Скачиваем файл реестра социально-значимых ресурсов");
             while($tries>0) {
-                $getResultResponse = $this->soap->getResultSocResources($gr);
-                if($getResultResponse->result == 1) {
-                    $tries = -1;
-                    $file = $getResultResponse->registerZipArchive;
-                    file_put_contents("./data/soc-latest.zip", $file);
-                    logw("Файл реестра социально-значимых ресурсов успешно выгружен.");
-                    if($onsuccess) tgsend("Файл реестра социально-значимых ресурсов успешно выгружен.");
-                    $this->setLocalDumpDate( $this->getRemoteDumpDate() );
-
-                    // Разбираем архив
-                    $parser = new Parser();
-                    $parser->readZip("./data/soc-latest.zip");
-
-                } else {
+                try {
+                    $getResultResponse = $this->soap->getResultSocResources($gr);
+                    if($getResultResponse->result == 1) {
+                        $tries = -1;
+                        $file = $getResultResponse->registerZipArchive;
+                        file_put_contents("./data/soc-latest.zip", $file);
+                        logw("Файл реестра социально-значимых ресурсов успешно выгружен.");
+                        if($onsuccess) tgsend("Файл реестра социально-значимых ресурсов успешно выгружен.");
+                        $this->setLocalDumpDate( $this->getRemoteDumpDate() );
+    
+                        // Разбираем архив
+                        $parser = new Parser();
+                        $parser->readZip("./data/soc-latest.zip");
+    
+                    } else {
+                        $tries--;
+                        logw("Осталось попыток: {$tries}; Ответ сервера: ".$getResultResponse->resultComment);
+                        logw("Ждём {$this->delay} секунд");
+                        sleep($this->delay);
+                    }
+                } catch (Exception $e) {
                     $tries--;
-                    logw("Осталось попыток: {$tries}; Ответ сервера: ".$getResultResponse->resultComment);
+                    logw("Осталось попыток: {$tries}; Ошибка: ".$e->getMessage());
                     logw("Ждём {$this->delay} секунд");
                     sleep($this->delay);
                 }
